@@ -12,6 +12,7 @@
     <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
     <script src="../../_static/jquery.js"></script>
     <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../../_static/doctools.js"></script>
     <script src="../../_static/translations.js"></script>
     <link rel="author" title="Об этих документах" href="../../about/" />
@@ -153,22 +154,22 @@
     <div class="body col-md-12 content" role="main">
       
   <section class="tex2jax_ignore mathjax_ignore" id="asperitas">
-<h1>Сопровождение развёртывания на базе дистрибутива Asperitas<a class="headerlink" href="#asperitas" title="Ссылка на этот заголовок">¶</a></h1>
+<h1>Сопровождение развёртывания на базе дистрибутива Asperitas<a class="headerlink" href="#asperitas" title="Permalink to this heading">¶</a></h1>
 <section id="id1">
-<h2>Развёрнутые сервера (общий список)<a class="headerlink" href="#id1" title="Ссылка на этот заголовок">¶</a></h2>
+<h2>Развёрнутые сервера (общий список)<a class="headerlink" href="#id1" title="Permalink to this heading">¶</a></h2>
 <p>Перейдите во вкладку <em>Deployed servers</em>.</p>
 <p><img alt="" src="../../_images/all-servers.png" /></p>
 <p>При чистом старте это окно будет пустым. Так как в системе ещё не было создано ни одного сервера.</p>
 <section id="id2">
-<h3>Развёрнутые сервера (список одного развёртывания)<a class="headerlink" href="#id2" title="Ссылка на этот заголовок">¶</a></h3>
+<h3>Развёрнутые сервера (список одного развёртывания)<a class="headerlink" href="#id2" title="Permalink to this heading">¶</a></h3>
 <p>Перейдите во вкладку <em>Servers list</em>.</p>
 <p><img alt="" src="../../_images/stack-servers.png" /></p>
 </section>
 </section>
 <section id="id3">
-<h2>Обновление узлов<a class="headerlink" href="#id3" title="Ссылка на этот заголовок">¶</a></h2>
+<h2>Обновление узлов<a class="headerlink" href="#id3" title="Permalink to this heading">¶</a></h2>
 <section id="id4">
-<h3>Обновление системы узла развёртывания<a class="headerlink" href="#id4" title="Ссылка на этот заголовок">¶</a></h3>
+<h3>Обновление системы узла развёртывания<a class="headerlink" href="#id4" title="Permalink to this heading">¶</a></h3>
 <p>При обнаружении уязвимостей или выходе малых обновлений компонентов системы необходимо обновить пакеты,
 а также контейнеры системы, которые отвечают основным компонентам системы.</p>
 <p>В первую очередь необходимо обновить систему</p>
@@ -183,7 +184,7 @@ docker://localhost:13787/asperitos/<span class="o">{}</span>:latest
 </div>
 </section>
 <section id="id5">
-<h3>Обновление узлов вычисления<a class="headerlink" href="#id5" title="Ссылка на этот заголовок">¶</a></h3>
+<h3>Обновление узлов вычисления<a class="headerlink" href="#id5" title="Permalink to this heading">¶</a></h3>
 <p>Так как при обновлении все контейнеры пересоздаются - то будет пересоздан и контейнер <em>nova_libvirt</em>, отвечающий за создание виртуальных машин.
 При этом все виртуальные машины останавливаются.</p>
 </section>
@@ -203,7 +204,7 @@ docker://localhost:13787/asperitos/<span class="o">{}</span>:latest
     </p>
     <p>
         &copy; Copyright 2019-2024, ИСП РАН.<br/>
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.5.0.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 5.0.0.<br/>
     </p>
   </div>
 </footer>

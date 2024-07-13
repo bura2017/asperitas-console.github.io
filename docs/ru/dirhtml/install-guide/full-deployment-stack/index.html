@@ -12,6 +12,7 @@
     <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
     <script src="../../_static/jquery.js"></script>
     <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../../_static/doctools.js"></script>
     <script src="../../_static/translations.js"></script>
     <link rel="author" title="Об этих документах" href="../../about/" />
@@ -99,6 +100,7 @@
 <li><a class="reference internal" href="#id4">Пароли</a></li>
 <li><a class="reference internal" href="#ip">Фиксированные IP-адреса</a></li>
 <li><a class="reference internal" href="#id5">Настройки сервисов облака</a></li>
+<li><a class="reference internal" href="#michman">Развёртывание инструмента Michman</a></li>
 <li><a class="reference internal" href="#ssl-tls-api">Добавление SSL/TLS для публичных сервисов API</a></li>
 </ul>
 </li>
@@ -150,7 +152,7 @@
     <div class="body col-md-12 content" role="main">
       
   <section class="tex2jax_ignore mathjax_ignore" id="id1">
-<h1>Подготовка одного развёртывания<a class="headerlink" href="#id1" title="Ссылка на этот заголовок">¶</a></h1>
+<h1>Подготовка одного развёртывания<a class="headerlink" href="#id1" title="Permalink to this heading">¶</a></h1>
 <p>В этом разделе описана подготовка одного развёртывания с нуля.
 Обязатель пройдите подготовку к развёртываниям в разделе <a class="reference internal" href="../full-deployment-init/"><span class="doc std std-doc">Подготовка к развёртываниям</span></a>.</p>
 <p>При деплое OpenStack с Ceph необходимо сначала развернуть Ceph!</p>
@@ -158,7 +160,7 @@
 <p><img alt="" src="../../_images/stack-menu.png" /></p>
 <p>На экране отображается <strong>Меню развёртывания</strong>, в котором все настройки влияют только на выбранное развёртывание.</p>
 <section id="id2">
-<h2>Роли, Сервисы и Сети ролей<a class="headerlink" href="#id2" title="Ссылка на этот заголовок">¶</a></h2>
+<h2>Роли, Сервисы и Сети ролей<a class="headerlink" href="#id2" title="Permalink to this heading">¶</a></h2>
 <p>Перейдите во вкладку <em>Roles Services and Networks</em>.</p>
 <p><img alt="" src="../../_images/roles-networks.png" /></p>
 <p>Сверху отображается сводная таблица настроек для каждой из ролей, участвующих в развёртывании.</p>
@@ -180,7 +182,7 @@
 <p><img alt="" src="../../_images/roles-networks-2.png" /></p>
 </section>
 <section id="id3">
-<h2>Сетевые планы<a class="headerlink" href="#id3" title="Ссылка на этот заголовок">¶</a></h2>
+<h2>Сетевые планы<a class="headerlink" href="#id3" title="Permalink to this heading">¶</a></h2>
 <p>Перейдите во вкладку <em>Network plans</em>.</p>
 <p><img alt="" src="../../_images/network-plans.png" /></p>
 <p>Определите IP-адреса NTP и DNS серверов. Несколько адресов можно указать через запятую.</p>
@@ -208,7 +210,7 @@
 Если развёртывание типа <strong>OpenStack</strong>, то поставьте галочки для сетей <em>External</em>, <em>InternalApi</em> и опционально для других сетей.</p>
 </section>
 <section id="id4">
-<h2>Пароли<a class="headerlink" href="#id4" title="Ссылка на этот заголовок">¶</a></h2>
+<h2>Пароли<a class="headerlink" href="#id4" title="Permalink to this heading">¶</a></h2>
 <p>Перейдите во вкладку <em>Passwords</em>.</p>
 <p><img alt="" src="../../_images/passwords.png" /></p>
 <p>Это окно имеет смысл только для развёртываний типа OpenStack. При развёртывании Ceph этот этап можно пропустить.</p>
@@ -220,14 +222,14 @@
 <p>Остальные пароли можно сгенерить случайным образом.</p>
 </section>
 <section id="ip">
-<h2>Фиксированные IP-адреса<a class="headerlink" href="#ip" title="Ссылка на этот заголовок">¶</a></h2>
+<h2>Фиксированные IP-адреса<a class="headerlink" href="#ip" title="Permalink to this heading">¶</a></h2>
 <p>Перейдите во вкладку <em>Fixed IPs</em>.</p>
 <p><img alt="" src="../../_images/fixed-ips.png" /></p>
 <p>IP-адреса можно зафиксировать для развёртываемых серверов. Также актуально фиксировать виртуальные IP-адреса для API развёртываемого обалка.</p>
 <p>Этот этап опционален.</p>
 </section>
 <section id="id5">
-<h2>Настройки сервисов облака<a class="headerlink" href="#id5" title="Ссылка на этот заголовок">¶</a></h2>
+<h2>Настройки сервисов облака<a class="headerlink" href="#id5" title="Permalink to this heading">¶</a></h2>
 <p>Перейдите во вкладку <em>Service settings</em>.</p>
 <p><img alt="" src="../../_images/service-settings.png" /></p>
 <p>Необходимо внимательно пройти по всем пунктам в этом окне, указать только используемые опции.
@@ -248,14 +250,20 @@
 <li><p><em>GlanceNfsBackend</em> - использовать Nfs сервер как бекенд для сервиса <a class="reference external" href="https://access.redhat.com/documentation/en-us/red_hat_openstack_platform/16.2/html/advanced_overcloud_customization/assembly_configuring-the-image-import-method-and-shared-staging-area">Glance</a></p></li>
 <li><p><em>GlanceCephBackend</em> - использовать Ceph сервер как бекенд для сервиса <a class="reference external" href="https://access.redhat.com/documentation/en-us/red_hat_openstack_platform/16.0/html/overcloud_parameters/image-storage-glance-parameters">Glance</a></p></li>
 <li><p><em>ComputeInstanceHA</em>, <em>PacemakerEnabled</em> - обязательны для развёртывания типа OpenStack с 3-мя и более контроллерами;</p></li>
-<li><p><em>Bonding</em> - указывается, если использовать агрегацию интерфейсов при развёртывании.
-В развёртываниях типа Ceph значение параметра <em>BondInterfaceOvsOptions</em> должно быть равно <em>mode=active-backup</em>, типа OpenStack - <em>bond_mode=active-backup</em>.
-Так как в Ceph используется агрегация ядра Linux, в OpenStack - агрегация Ovs.</p></li>
+<li><p><em>Bonding</em> - указывается, если использовать агрегацию интерфейсов при развёртывании.</p></li>
+<li><p><em>Michman</em> - указывается для развёртывания инструмента Michman.</p></li>
 </ul>
+<p>В развёртываниях типа Ceph значение параметра <em>BondInterfaceOvsOptions</em> должно быть равно <em>mode=active-backup</em>, типа OpenStack - <em>bond_mode=active-backup</em>.
+Так как в Ceph используется агрегация ядра Linux, в OpenStack - агрегация Ovs.</p>
 <p>При определении бекендов сервисов необходимо учитывать, что для Glance и Nova может быть выбран только один. Для сервиса Cinder может использоваться несколько разных бекендов.</p>
 </section>
+<section id="michman">
+<h2>Развёртывание инструмента Michman<a class="headerlink" href="#michman" title="Permalink to this heading">¶</a></h2>
+<p>Для развёртывания инструмента Michman, укажите его использование во вкладке <em>Service settings</em>. Для этого проставьте галочку опции <em>Michman</em> и все галочки во внутреннем меню этой опции.</p>
+<p><img alt="" src="../../_images/michman-enabled.png" /></p>
+</section>
 <section id="ssl-tls-api">
-<h2>Добавление SSL/TLS для публичных сервисов API<a class="headerlink" href="#ssl-tls-api" title="Ссылка на этот заголовок">¶</a></h2>
+<h2>Добавление SSL/TLS для публичных сервисов API<a class="headerlink" href="#ssl-tls-api" title="Permalink to this heading">¶</a></h2>
 <ol class="arabic simple">
 <li><p>В настройках для развёртывания зайти во вкладку <code class="docutils literal notranslate"><span class="pre">Endpoint</span> <span class="pre">Data</span></code>.</p></li>
 <li><p>Под заголовком <code class="docutils literal notranslate"><span class="pre">TLS</span></code> нажать кнопку <code class="docutils literal notranslate"><span class="pre">&lt;</span> <span class="pre">use</span> <span class="pre">&gt;</span></code>.</p></li>
@@ -282,7 +290,7 @@
     </p>
     <p>
         &copy; Copyright 2019-2024, ИСП РАН.<br/>
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.5.0.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 5.0.0.<br/>
     </p>
   </div>
 </footer>

@@ -12,6 +12,7 @@
     <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
     <script src="../../_static/jquery.js"></script>
     <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../../_static/doctools.js"></script>
     <script src="../../_static/translations.js"></script>
     <link rel="author" title="Об этих документах" href="../../about/" />
@@ -171,9 +172,9 @@
     <div class="body col-md-12 content" role="main">
       
   <section class="tex2jax_ignore mathjax_ignore" id="id1">
-<h1>Устранение неполадок<a class="headerlink" href="#id1" title="Ссылка на этот заголовок">¶</a></h1>
+<h1>Устранение неполадок<a class="headerlink" href="#id1" title="Permalink to this heading">¶</a></h1>
 <section id="enroll">
-<h2>Физический узел в статусе <em>enroll</em><a class="headerlink" href="#enroll" title="Ссылка на этот заголовок">¶</a></h2>
+<h2>Физический узел в статусе <em>enroll</em><a class="headerlink" href="#enroll" title="Permalink to this heading">¶</a></h2>
 <p>Если после добавления физического узла его статус изменился на <em>enroll</em>, то возможны следующие варианты:</p>
 <ul class="simple">
 <li><p>Указанный IP-адрес недоступен с узла развёртывания. Проверьте доступность адреса с узла развёртывания: надо выйти из asperitas консоли и попробовать команду</p></li>
@@ -190,9 +191,9 @@
 <p>Измените необходимые параметры, а также <strong>снова введите пароль</strong>. Нажмите кнопку <em>Save</em> и ожидайте изменение статуса на manageable.</p>
 </section>
 <section id="id2">
-<h2>Ошибка интроспекции<a class="headerlink" href="#id2" title="Ссылка на этот заголовок">¶</a></h2>
+<h2>Ошибка интроспекции<a class="headerlink" href="#id2" title="Permalink to this heading">¶</a></h2>
 <section id="dnsmasqfilter">
-<h3>DnsmasqFilter<a class="headerlink" href="#dnsmasqfilter" title="Ссылка на этот заголовок">¶</a></h3>
+<h3>DnsmasqFilter<a class="headerlink" href="#dnsmasqfilter" title="Permalink to this heading">¶</a></h3>
 <p>Ошибка при попытке интроспектировать узел</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">The</span> <span class="n">PXE</span> <span class="nb">filter</span> <span class="n">driver</span> <span class="n">DnsmasqFilter</span><span class="p">,</span> <span class="n">state</span><span class="o">=</span><span class="n">uninitialized</span><span class="p">:</span> <span class="n">my</span> <span class="n">fsm</span> <span class="n">encountered</span> <span class="n">an</span> <span class="n">exception</span><span class="p">:</span> <span class="n">Can</span> <span class="ow">not</span> <span class="n">transition</span> <span class="kn">from</span> <span class="nn">state</span> <span class="s1">&#39;uninitialized&#39;</span> <span class="n">on</span> <span class="n">event</span> <span class="s1">&#39;sync&#39;</span> <span class="p">(</span><span class="n">no</span> <span class="n">defined</span> <span class="n">transition</span><span class="p">)</span>
 </pre></div>
@@ -205,7 +206,7 @@
 </div>
 </section>
 <section id="ramdisk-error">
-<h3>Ramdisk error<a class="headerlink" href="#ramdisk-error" title="Ссылка на этот заголовок">¶</a></h3>
+<h3>Ramdisk error<a class="headerlink" href="#ramdisk-error" title="Permalink to this heading">¶</a></h3>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">2024</span><span class="o">-</span><span class="mi">02</span><span class="o">-</span><span class="mi">26</span> <span class="mi">19</span><span class="p">:</span><span class="mi">16</span><span class="p">:</span><span class="mf">12.688</span> <span class="mi">7</span> <span class="n">ERROR</span> <span class="n">ironic_inspector</span><span class="o">.</span><span class="n">utils</span> <span class="p">[</span><span class="o">-</span><span class="p">]</span> <span class="p">[</span><span class="n">node</span><span class="p">:</span> <span class="n">MAC</span> <span class="mi">00</span><span class="p">:</span><span class="mi">25</span><span class="p">:</span><span class="mi">90</span><span class="p">:</span><span class="n">bb</span><span class="p">:</span><span class="mi">0</span><span class="n">e</span><span class="p">:</span><span class="n">d8</span> <span class="n">BMC</span> <span class="mf">10.100.2.33</span><span class="p">]</span> <span class="n">Ramdisk</span> <span class="n">repor</span>
 <span class="n">ted</span> <span class="n">error</span><span class="p">:</span> <span class="n">The</span> <span class="n">following</span> <span class="n">errors</span> <span class="n">were</span> <span class="n">encountered</span><span class="p">:</span>
 <span class="o">*</span> <span class="n">failed</span> <span class="n">to</span> <span class="n">run</span> <span class="n">hardware</span><span class="o">-</span><span class="n">detect</span> <span class="n">utility</span><span class="p">:</span> <span class="p">[</span><span class="n">Errno</span> <span class="mi">2</span><span class="p">]</span> <span class="n">No</span> <span class="n">such</span> <span class="n">file</span> <span class="ow">or</span> <span class="n">directory</span><span class="p">:</span> <span class="s1">&#39;hardware-detect&#39;</span>
@@ -220,7 +221,7 @@
 </section>
 </section>
 <section id="no-valid-json">
-<h2>No valid JSON при создании развёртывания<a class="headerlink" href="#no-valid-json" title="Ссылка на этот заголовок">¶</a></h2>
+<h2>No valid JSON при создании развёртывания<a class="headerlink" href="#no-valid-json" title="Permalink to this heading">¶</a></h2>
 <p>Ошибка при создавнии развёртывания</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="ne">ValueError</span><span class="p">:</span> <span class="n">Value</span> <span class="n">must</span> <span class="n">be</span> <span class="n">valid</span> <span class="n">JSON</span><span class="p">:</span> <span class="n">Expecting</span> <span class="n">value</span><span class="p">:</span> <span class="n">line</span> <span class="mi">1</span> <span class="n">column</span> <span class="mi">1</span> <span class="p">(</span><span class="n">char</span> <span class="mi">0</span><span class="p">)</span>
 </pre></div>
@@ -240,7 +241,7 @@
 <p>И запустите создание заново</p>
 </section>
 <section id="id3">
-<h2>Параметр не определён или определён неправильно в шаблоне<a class="headerlink" href="#id3" title="Ссылка на этот заголовок">¶</a></h2>
+<h2>Параметр не определён или определён неправильно в шаблоне<a class="headerlink" href="#id3" title="Permalink to this heading">¶</a></h2>
 <p>Если при создании стека не хватает какого-то параметра, но при этом, стек уже начал создаваться.
 Или если результат не соответствует указанному в параметре. То можно использовать следующие команды для дебага</p>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>openstack<span class="w"> </span>stack<span class="w"> </span>environment<span class="w"> </span>show<span class="w"> </span>asperitas
@@ -249,7 +250,7 @@ openstack<span class="w"> </span>stack<span class="w"> </span>template<span clas
 </div>
 </section>
 <section id="config-install">
-<h2>При раскатке конфигурации (config-install) не найден плейбук<a class="headerlink" href="#config-install" title="Ссылка на этот заголовок">¶</a></h2>
+<h2>При раскатке конфигурации (config-install) не найден плейбук<a class="headerlink" href="#config-install" title="Permalink to this heading">¶</a></h2>
 <p>Если при развёртывании облака вы видете ошибку,</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="ne">RuntimeError</span><span class="p">:</span> <span class="n">No</span> <span class="n">such</span> <span class="n">playbook</span><span class="p">:</span> <span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">stack</span><span class="o">/</span><span class="n">config</span><span class="o">-</span><span class="n">download</span><span class="o">/</span><span class="n">best</span><span class="o">-</span><span class="n">deployment</span><span class="o">-</span><span class="n">ever</span><span class="o">/</span><span class="n">deploy_steps_playbook</span><span class="o">.</span><span class="n">yaml</span>
 </pre></div>
@@ -261,7 +262,7 @@ openstack<span class="w"> </span>stack<span class="w"> </span>template<span clas
 </div>
 <p>Если в выводе присутствуют записи вида OS::Heat::None - то удалите их и обновите стек.</p>
 <section id="id4">
-<h3>Пояснение<a class="headerlink" href="#id4" title="Ссылка на этот заголовок">¶</a></h3>
+<h3>Пояснение<a class="headerlink" href="#id4" title="Permalink to this heading">¶</a></h3>
 <p>При операции config download выполняется генерация плейбуков.
 Код находится в библиотеке <code class="docutils literal notranslate"><span class="pre">tripleo_common</span></code> в папке <code class="docutils literal notranslate"><span class="pre">utils/config.py</span></code>.</p>
 <p>Для дебага можно использовать команду</p>
@@ -275,7 +276,7 @@ openstack<span class="w"> </span>stack<span class="w"> </span>template<span clas
 </section>
 </section>
 <section id="id5">
-<h2>Ошибка настройка сети<a class="headerlink" href="#id5" title="Ссылка на этот заголовок">¶</a></h2>
+<h2>Ошибка настройка сети<a class="headerlink" href="#id5" title="Permalink to this heading">¶</a></h2>
 <p>Если при развёртывании облака вы видете ошибку,</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="s2">&quot;failed_when_result&quot;</span><span class="p">:</span> <span class="n">true</span>
 <span class="p">}</span>
@@ -306,7 +307,7 @@ openstack<span class="w"> </span>stack<span class="w"> </span>template<span clas
 <p>Развёртывание продолжится дальше</p>
 </section>
 <section id="puppet-cache-read-only">
-<h2>Puppet cache read-only файловая система<a class="headerlink" href="#puppet-cache-read-only" title="Ссылка на этот заголовок">¶</a></h2>
+<h2>Puppet cache read-only файловая система<a class="headerlink" href="#puppet-cache-read-only" title="Permalink to this heading">¶</a></h2>
 <p>Если при развёртывании падают контейнеры вида container-puppet-<service>.
 То необходимо проверить логи контейнера после старта</p>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>less<span class="w"> </span>/var/log/containers/stdouts/container-puppet-&lt;service&gt;.log
@@ -331,7 +332,7 @@ sudo<span class="w"> </span>podman<span class="w"> </span>container<span class="
 </div>
 </section>
 <section id="ceph">
-<h2>Неправильные права на директорию при развёртывании с использованием Ceph<a class="headerlink" href="#ceph" title="Ссылка на этот заголовок">¶</a></h2>
+<h2>Неправильные права на директорию при развёртывании с использованием Ceph<a class="headerlink" href="#ceph" title="Permalink to this heading">¶</a></h2>
 <p>Ошибка выглядит следующим образом</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">2023</span><span class="o">-</span><span class="mi">03</span><span class="o">-</span><span class="mi">27</span> <span class="mi">20</span><span class="p">:</span><span class="mi">34</span><span class="p">:</span><span class="mf">52.505694</span> <span class="o">|</span> <span class="mi">52540064</span><span class="o">-</span><span class="mi">5093</span><span class="o">-</span><span class="mi">800</span><span class="n">d</span><span class="o">-</span><span class="mi">24</span><span class="n">d6</span><span class="o">-</span><span class="mi">00000001</span><span class="n">f15c</span> <span class="o">|</span>       <span class="n">TASK</span> <span class="o">|</span> <span class="n">symbolic</span> <span class="n">link</span> <span class="n">to</span> <span class="n">tripleo</span> <span class="n">inventory</span> <span class="kn">from</span> <span class="nn">ceph</span><span class="o">-</span><span class="n">ansible</span> <span class="n">work</span> <span class="n">directory</span>
 <span class="mi">2023</span><span class="o">-</span><span class="mi">03</span><span class="o">-</span><span class="mi">27</span> <span class="mi">20</span><span class="p">:</span><span class="mi">34</span><span class="p">:</span><span class="mf">52.764361</span> <span class="o">|</span> <span class="mi">52540064</span><span class="o">-</span><span class="mi">5093</span><span class="o">-</span><span class="mi">800</span><span class="n">d</span><span class="o">-</span><span class="mi">24</span><span class="n">d6</span><span class="o">-</span><span class="mi">00000001</span><span class="n">f15c</span> <span class="o">|</span>    <span class="n">IGNORED</span> <span class="o">|</span> <span class="n">symbolic</span> <span class="n">link</span> <span class="n">to</span> <span class="n">tripleo</span> <span class="n">inventory</span> <span class="kn">from</span> <span class="nn">ceph</span><span class="o">-</span><span class="n">ansible</span> <span class="n">work</span> <span class="n">directory</span> <span class="o">|</span> <span class="n">undercloud</span> <span class="o">|</span> <span class="n">error</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;changed&quot;</span><span class="p">:</span> <span class="n">false</span><span class="p">,</span> <span class="s2">&quot;msg&quot;</span><span class="p">:</span> <span class="s2">&quot;Error while linking: [Errno 13] Permission denied: b&#39;/home/stack/config-download/asperitas/tripleo-ansible-inventory.yaml&#39; -&gt; b&#39;/home/stack/config-download/asperitas/ceph-ansible/inventory.yml&#39;&quot;</span><span class="p">,</span> <span class="s2">&quot;path&quot;</span><span class="p">:</span> <span class="s2">&quot;/home/stack/config-download/asperitas/ceph-ansible/inventory.yml&quot;</span><span class="p">}</span>
@@ -349,7 +350,7 @@ screen<span class="w"> </span>-x<span class="w"> </span>&lt;deploy_name&gt;
 </div>
 </section>
 <section id="wait-for-puppet-host-configuration-to-finish">
-<h2>Wait for puppet host configuration to finish<a class="headerlink" href="#wait-for-puppet-host-configuration-to-finish" title="Ссылка на этот заголовок">¶</a></h2>
+<h2>Wait for puppet host configuration to finish<a class="headerlink" href="#wait-for-puppet-host-configuration-to-finish" title="Permalink to this heading">¶</a></h2>
 <p>Если при развёртывании сервисов Ansible падает на задаче <em>Wait for puppet host configuration to finish</em>, то сначала необходимо определить узел, на котором произошла ошибка</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">YYYY</span><span class="o">-</span><span class="n">MM</span><span class="o">-</span><span class="n">DD</span> <span class="n">HH</span><span class="p">:</span><span class="n">MM</span><span class="p">:</span><span class="n">SS</span> <span class="o">|</span> <span class="mi">00000000</span><span class="o">-</span><span class="mi">0000</span><span class="o">-</span><span class="mi">0000</span><span class="o">-</span><span class="mi">0000</span><span class="o">-</span><span class="mi">000000000000</span> <span class="o">|</span> <span class="n">WAITING</span> <span class="o">|</span> <span class="n">Wait</span> <span class="k">for</span> <span class="n">puppet</span> <span class="n">host</span> <span class="n">configuration</span> <span class="n">to</span> <span class="n">finish</span> <span class="o">|</span> <span class="n">asperitas</span><span class="o">-</span><span class="n">controller</span><span class="o">-</span><span class="mi">0</span>
 </pre></div>
@@ -362,7 +363,7 @@ screen<span class="w"> </span>-x<span class="w"> </span>&lt;deploy_name&gt;
 <p>Дальнейший поиск проблемы зависит от вывода команды.<br />
 Если вывод команды долгий или недостаточно информативный, то добавьте флаг <code class="docutils literal notranslate"><span class="pre">--debug</span></code></p>
 <section id="pacemaker">
-<h3>Pacemaker<a class="headerlink" href="#pacemaker" title="Ссылка на этот заголовок">¶</a></h3>
+<h3>Pacemaker<a class="headerlink" href="#pacemaker" title="Permalink to this heading">¶</a></h3>
 <p>Ошибка выглядит следующим образом:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Error</span><span class="p">:</span> <span class="s1">&#39;pcs status | grep -q -e &quot;asperitas-novacomputeiha-30[[:blank:]].*Started&quot;&#39;</span> <span class="n">returned</span> <span class="mi">1</span> <span class="n">instead</span> <span class="n">of</span> <span class="n">one</span> <span class="n">of</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span>
 </pre></div>
@@ -420,9 +421,9 @@ screen<span class="w"> </span>-x<span class="w"> </span>&lt;deploy_name&gt;
 </section>
 </section>
 <section id="id6">
-<h2>Не найден хост<a class="headerlink" href="#id6" title="Ссылка на этот заголовок">¶</a></h2>
+<h2>Не найден хост<a class="headerlink" href="#id6" title="Permalink to this heading">¶</a></h2>
 <section id="id7">
-<h3>После обновления развёртывания<a class="headerlink" href="#id7" title="Ссылка на этот заголовок">¶</a></h3>
+<h3>После обновления развёртывания<a class="headerlink" href="#id7" title="Permalink to this heading">¶</a></h3>
 <ol class="arabic simple">
 <li><p>Переведите nova-scheduler в режим debug. Для этого поменяйте параметр <em>debug=False</em> в <em>True</em> в файле <em>/var/lib/config-data/puppet-generated/nova/etc/nova/nova.conf</em>. Затем перезапустите nova-scheduler</p></li>
 </ol>
@@ -447,7 +448,7 @@ sudo<span class="w"> </span>podman<span class="w"> </span><span class="nb">exec<
 </section>
 </section>
 <section id="id8">
-<h2>Число используемых ресурсов на гипервизорах обнулилось<a class="headerlink" href="#id8" title="Ссылка на этот заголовок">¶</a></h2>
+<h2>Число используемых ресурсов на гипервизорах обнулилось<a class="headerlink" href="#id8" title="Permalink to this heading">¶</a></h2>
 <p>Такое может произойти, если вы попытались поменять основной домен для имен хостов. В таком случае вы увидете следующее.</p>
 <p>Например, вы поменяли хостнейм с <em>localdomain</em> на <em>novalocal</em>, тогда</p>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>openstack<span class="w"> </span>server<span class="w"> </span>list<span class="w"> </span>--all-projects<span class="w"> </span>--host<span class="w"> </span>asperitas-novacomputeiha-12.localdomain<span class="w"> </span>-f<span class="w"> </span>value<span class="w"> </span><span class="p">|</span><span class="w"> </span>wc<span class="w"> </span>-l
@@ -479,7 +480,7 @@ sudo<span class="w"> </span>podman<span class="w"> </span><span class="nb">exec<
 </div>
 </section>
 <section id="cinder">
-<h2>Бекенд для cinder недоступен<a class="headerlink" href="#cinder" title="Ссылка на этот заголовок">¶</a></h2>
+<h2>Бекенд для cinder недоступен<a class="headerlink" href="#cinder" title="Permalink to this heading">¶</a></h2>
 <p>Если  бекенд находится в статусе down при выполнении команды</p>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>openstack<span class="w"> </span>volume<span class="w"> </span>service<span class="w"> </span>list<span class="w"> </span>
 </pre></div>
@@ -492,7 +493,7 @@ openstack<span class="w"> </span>volume<span class="w"> </span>service<span clas
 </div>
 </section>
 <section id="nova-cell">
-<h2>Вычислительный узел не добавлен в nova_cell<a class="headerlink" href="#nova-cell" title="Ссылка на этот заголовок">¶</a></h2>
+<h2>Вычислительный узел не добавлен в nova_cell<a class="headerlink" href="#nova-cell" title="Permalink to this heading">¶</a></h2>
 <p>Если на вычислительном узле в логах /var/log/containers/nova/nova-compute.log ошибка выглядит следующим образом:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ERROR</span> <span class="n">nova</span><span class="o">.</span><span class="n">cmd</span><span class="o">.</span><span class="n">common</span> <span class="p">[</span><span class="n">req</span><span class="o">-</span><span class="mi">4431</span><span class="n">a4a0</span><span class="o">-</span><span class="mi">6789</span><span class="o">-</span><span class="mi">466</span><span class="n">f</span><span class="o">-</span><span class="mi">9</span><span class="n">ed1</span><span class="o">-</span><span class="n">b518a05b5771</span> <span class="o">-</span> <span class="o">-</span> <span class="o">-</span> <span class="o">-</span> <span class="o">-</span><span class="p">]</span> <span class="n">No</span> <span class="n">db</span> <span class="n">access</span> <span class="n">allo</span>
 <span class="n">wed</span> <span class="ow">in</span> <span class="n">nova</span><span class="o">-</span><span class="n">compute</span><span class="p">:</span>   <span class="n">File</span> <span class="s2">&quot;/usr/bin/nova-compute&quot;</span><span class="p">,</span> <span class="n">line</span> <span class="mi">10</span><span class="p">,</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
@@ -501,7 +502,7 @@ openstack<span class="w"> </span>volume<span class="w"> </span>service<span clas
 <p>То скорее всего вычислительный узел был развёрнут без undercloud узла в консоли - нужно развернуть с ним вместе.</p>
 </section>
 <section id="host-key-verification-failed">
-<h2>Ошибка миграции Host key verification failed<a class="headerlink" href="#host-key-verification-failed" title="Ссылка на этот заголовок">¶</a></h2>
+<h2>Ошибка миграции Host key verification failed<a class="headerlink" href="#host-key-verification-failed" title="Permalink to this heading">¶</a></h2>
 <p>Быстрый метод решения проблемы</p>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>su
 <span class="nb">echo</span><span class="w"> </span><span class="s1">&#39;StrictHostKeyChecking no&#39;</span><span class="w"> </span>&gt;&gt;<span class="w"> </span>/var/lib/config-data/puppet-generated/nova_libvirt/var/lib/nova/.ssh/config
@@ -524,7 +525,7 @@ systemctl<span class="w"> </span>restart<span class="w"> </span>tripleo_nova_com
     </p>
     <p>
         &copy; Copyright 2019-2024, ИСП РАН.<br/>
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.5.0.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 5.0.0.<br/>
     </p>
   </div>
 </footer>

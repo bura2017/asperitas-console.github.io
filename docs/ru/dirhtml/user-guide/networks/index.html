@@ -12,6 +12,7 @@
     <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
     <script src="../../_static/jquery.js"></script>
     <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../../_static/doctools.js"></script>
     <script src="../../_static/translations.js"></script>
     <link rel="author" title="Об этих документах" href="../../about/" />
@@ -149,11 +150,11 @@
     <div class="body col-md-12 content" role="main">
       
   <section class="tex2jax_ignore mathjax_ignore" id="id1">
-<h1>Создание и управление сетями (Вкладка «Сеть»)<a class="headerlink" href="#id1" title="Ссылка на этот заголовок">¶</a></h1>
+<h1>Создание и управление сетями (Вкладка «Сеть»)<a class="headerlink" href="#id1" title="Permalink to this heading">¶</a></h1>
 <p>Сервис сетевых функций предоставляет систему для управления сетевой связностью в пределах развертывания облака. Он обрабатывает создание и управление виртуальной сетевой инфраструктурой, включая сети, коммутаторы, подсети, маршрутизаторы и виртуальный фаервол.</p>
 <p>Этот раздел предоставляет базовые инструкции по созданию сетей и виртуальных маршрутизаторов. Для подробной информации об управлении сетями обратитесь к <code class="docutils literal notranslate"><span class="pre">Руководству</span> <span class="pre">по</span> <span class="pre">сетям</span> <span class="pre">OpenStack</span> <span class="pre">&lt;https://docs.openstack.org/neutron/latest/admin/&gt;</span></code>.</p>
 <section id="id2">
-<h2>Создание сети<a class="headerlink" href="#id2" title="Ссылка на этот заголовок">¶</a></h2>
+<h2>Создание сети<a class="headerlink" href="#id2" title="Permalink to this heading">¶</a></h2>
 <ol class="arabic simple">
 <li><p>Войдите в панель управления.</p></li>
 <li><p>Выберите соответствующий проект из меню переключения проекта в верхнем левом углу.</p></li>
@@ -190,7 +191,7 @@
 </ol>
 </section>
 <section id="id3">
-<h2>Создание маршрутизатора<a class="headerlink" href="#id3" title="Ссылка на этот заголовок">¶</a></h2>
+<h2>Создание маршрутизатора<a class="headerlink" href="#id3" title="Permalink to this heading">¶</a></h2>
 <ol class="arabic simple">
 <li><p>Войдите в панель управления.</p></li>
 <li><p>Выберите соответствующий проект из меню переключения проекта в верхнем левом углу.</p></li>
@@ -217,7 +218,7 @@
 </ol>
 </section>
 <section id="id4">
-<h2>Создание порта<a class="headerlink" href="#id4" title="Ссылка на этот заголовок">¶</a></h2>
+<h2>Создание порта<a class="headerlink" href="#id4" title="Permalink to this heading">¶</a></h2>
 <p>Иногда нужно создавать сетевые порты вручную (например, если в этой сети уже есть DHCP-сервер, и нужно создать набор заранее известных адресов для виртуальных машин в облаке)</p>
 <ol class="arabic simple">
 <li><p>Войдите в панель управления.</p></li>
@@ -246,7 +247,7 @@
 </ol>
 </section>
 <section id="ip">
-<h2>Создание плавающего IP<a class="headerlink" href="#ip" title="Ссылка на этот заголовок">¶</a></h2>
+<h2>Создание плавающего IP<a class="headerlink" href="#ip" title="Permalink to this heading">¶</a></h2>
 <p>Плавающим IP называется сетевой порт, выполняющий функцию трансляции адресов на стороне облака. То есть, если виртуальной машине (а на самом деле порту) назначается плавающий IP, виртуальная машина об этом адресе ничего не знает. Трафик приходит на плавающий IP (который используется для внешнего доступа); при этом у самой виртуальной машины есть 1 или больше сетевых портов, которые ей принадлежат полноправно.</p>
 <ol class="arabic simple">
 <li><p>Войдите в панель управления.</p></li>
@@ -270,7 +271,7 @@
 </ol>
 </section>
 <section id="id5">
-<h2>Создание группы безопасности<a class="headerlink" href="#id5" title="Ссылка на этот заголовок">¶</a></h2>
+<h2>Создание группы безопасности<a class="headerlink" href="#id5" title="Permalink to this heading">¶</a></h2>
 <p>Группы безопасности представляют собой программно-определяемый фаервол. Каждая группа состоит из набора правил; к каждому порту (или - для простоты - инстансу) можно прикрепить 1 или больше групп безопаснсти. Правила в группах безопасности на данных момент описывают правила доступа к TCP/UPD/ICMP в разрешающем виде (запрещающих правил нет, но вскоре будут).</p>
 <ol class="arabic simple">
 <li><p>Войдите в панель управления.</p></li>
@@ -299,7 +300,7 @@
     </p>
     <p>
         &copy; Copyright 2019-2024, ИСП РАН.<br/>
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.5.0.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 5.0.0.<br/>
     </p>
   </div>
 </footer>

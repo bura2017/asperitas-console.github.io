@@ -12,6 +12,7 @@
     <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
     <script src="../../_static/jquery.js"></script>
     <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../../_static/doctools.js"></script>
     <script src="../../_static/translations.js"></script>
     <link rel="author" title="Об этих документах" href="../../about/" />
@@ -150,11 +151,11 @@
     <div class="body col-md-12 content" role="main">
       
   <section class="tex2jax_ignore mathjax_ignore" id="id1">
-<h1>Запуск и управление инстансами (вкладка Вычисления)<a class="headerlink" href="#id1" title="Ссылка на этот заголовок">¶</a></h1>
+<h1>Запуск и управление инстансами (вкладка Вычисления)<a class="headerlink" href="#id1" title="Permalink to this heading">¶</a></h1>
 <p>Сервис OpenStack Вычисления предоставляет возможность развертывания инстансов (виртуальных машин). В случае необходимости в более подробной
 информации смотрите <a class="reference external" href="https://docs.openstack.org/nova/latest/">Руководство OpenStack Nova</a>.</p>
 <section id="id2">
-<h2>Создание пары ключей<a class="headerlink" href="#id2" title="Ссылка на этот заголовок">¶</a></h2>
+<h2>Создание пары ключей<a class="headerlink" href="#id2" title="Permalink to this heading">¶</a></h2>
 <p>Для управления и входа в создаваемые инстансы можно использовать пароли
 (задаются на этапы создания инстанса) или ключевые пары (в системе используются ключи ssh; под ключевой парой подразумевается публичный и закрытый ключ из пары ssh-ключей). Ключевая пара может использоваться для входа *nix-like систему и для безопасной расшифровки пароля в Windows системах, если он был задан таким способом.</p>
 <ol class="arabic simple">
@@ -178,7 +179,7 @@
 </ol>
 </section>
 <section id="id3">
-<h2>Запуск инстанса<a class="headerlink" href="#id3" title="Ссылка на этот заголовок">¶</a></h2>
+<h2>Запуск инстанса<a class="headerlink" href="#id3" title="Permalink to this heading">¶</a></h2>
 <ol class="arabic simple">
 <li><p>Войдите в дашборд.</p></li>
 <li><p>Выберите соответствующий проект из меню Switch Project в верхнем левом углу.</p></li>
@@ -250,7 +251,7 @@
 </ol>
 </section>
 <section id="id4">
-<h2>Создание снимка инстанса<a class="headerlink" href="#id4" title="Ссылка на этот заголовок">¶</a></h2>
+<h2>Создание снимка инстанса<a class="headerlink" href="#id4" title="Permalink to this heading">¶</a></h2>
 <ol class="arabic simple">
 <li><p>Войдите в дашборд.</p></li>
 <li><p>Выберите соответствующий проект из меню переключения проектов в верхнем левом углу.</p></li>
@@ -270,7 +271,7 @@
 </ol>
 </section>
 <section id="id5">
-<h2>Управление состоянием инстанса<a class="headerlink" href="#id5" title="Ссылка на этот заголовок">¶</a></h2>
+<h2>Управление состоянием инстанса<a class="headerlink" href="#id5" title="Permalink to this heading">¶</a></h2>
 <ol class="arabic simple">
 <li><p>Войдите в дашборд.</p></li>
 <li><p>Выберите соответствующий проект из меню переключения проектов в верхнем левом углу.</p></li>
@@ -283,7 +284,7 @@
 </ol>
 </section>
 <section id="ip">
-<h2>Назначение плавающего IP-адреса инстансу<a class="headerlink" href="#ip" title="Ссылка на этот заголовок">¶</a></h2>
+<h2>Назначение плавающего IP-адреса инстансу<a class="headerlink" href="#ip" title="Permalink to this heading">¶</a></h2>
 <p>Плавающие IP — это очень важная концепция в облачной среде. В рамках облачной среды зачастую используются сети, которые являются локальными для данного проекта в облаке. Они зачастую строятся на технологиях VLAN или оверлейных сетях (например, geneve или vxlan). С другой стороны, для части серверов важно быть видимыми из интернета или из внутренних сетей на стороне организации. В этом случае зачастую используются <em>плавающие IP</em>: они привязываются к инстансам по мере необходимости (и их можно отвязать и переназначить другим инстансам). Сама операционная система инстанса про такие IP ничего не знает; они срабатывают как NAT-адреса для доступа к инстансу.</p>
 <ol class="arabic simple">
 <li><p>Войдите в дашборд.</p></li>
@@ -305,7 +306,7 @@
 </div></blockquote>
 </section>
 <section id="id6">
-<h2>Загрузка образа<a class="headerlink" href="#id6" title="Ссылка на этот заголовок">¶</a></h2>
+<h2>Загрузка образа<a class="headerlink" href="#id6" title="Permalink to this heading">¶</a></h2>
 <p>Образы используются для создания виртуальных машинных инстансов в облаке. Для получения более подробной информации о создании файлов образов смотрите <a class="reference external" href="https://docs.openstack.org/glance/latest/">Руководство OpenStack Glance</a>.</p>
 <ol class="arabic">
 <li><p>Войдите в дашборд.</p></li>
@@ -352,7 +353,7 @@
     </p>
     <p>
         &copy; Copyright 2019-2024, ИСП РАН.<br/>
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.5.0.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 5.0.0.<br/>
     </p>
   </div>
 </footer>

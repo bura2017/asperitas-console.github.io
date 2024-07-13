@@ -12,6 +12,7 @@
     <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
     <script src="../../_static/jquery.js"></script>
     <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../../_static/doctools.js"></script>
     <script src="../../_static/translations.js"></script>
     <link rel="author" title="Об этих документах" href="../../about/" />
@@ -151,7 +152,7 @@
     <div class="body col-md-12 content" role="main">
       
   <section class="tex2jax_ignore mathjax_ignore" id="id1">
-<h1>Подготовка к развёртываниям с нуля<a class="headerlink" href="#id1" title="Ссылка на этот заголовок">¶</a></h1>
+<h1>Подготовка к развёртываниям с нуля<a class="headerlink" href="#id1" title="Permalink to this heading">¶</a></h1>
 <p>При первоначальном развёртывании строго советуется пройти каждый пункт!
 Asperitas Console не предполагает быстрого старта или прототипного развёртывания!</p>
 <p>Для запуска консоли введите команду в консоли узла развёртывания</p>
@@ -165,7 +166,7 @@ Asperitas Console не предполагает быстрого старта и
 <p>После выполнения команды появляется <strong>Главное окно</strong> asperitas консоли
 <img alt="Главное меню" src="../../_images/main-menu.png" /></p>
 <section id="id2">
-<h2>Физические узлы<a class="headerlink" href="#id2" title="Ссылка на этот заголовок">¶</a></h2>
+<h2>Физические узлы<a class="headerlink" href="#id2" title="Permalink to this heading">¶</a></h2>
 <p>Перейдите во вкладку <em>Baremetal nodes</em>.
 Нажмите кнопку <em>Add</em>, чтобы добавить новый физический узел для добавления в развёртываемое облако.</p>
 <p><img alt="" src="../../_images/baremetal-node-add.png" /></p>
@@ -196,7 +197,7 @@ Asperitas Console не предполагает быстрого старта и
 Система автоматически переводит узел в состояние <em>available</em>, если известны параметры <em>Disk capacity</em>, <em>Cpu number</em>, <em>Architecure</em> и <em>Memory capacity</em>.</p>
 </section>
 <section id="id3">
-<h2>Интроспекция<a class="headerlink" href="#id3" title="Ссылка на этот заголовок">¶</a></h2>
+<h2>Интроспекция<a class="headerlink" href="#id3" title="Permalink to this heading">¶</a></h2>
 <p>Перейдите во вкладку <em>Introspection</em> Главного меню.</p>
 <p><img alt="" src="../../_images/introspection-list.png" /></p>
 <p>На экране отобразится список физических машин, добавленных в предыдущем пункте.</p>
@@ -207,14 +208,14 @@ Asperitas Console не предполагает быстрого старта и
 <p><img alt="" src="../../_images/introspection-data.png" /></p>
 </section>
 <section id="id4">
-<h2>Порядок физических интерфейсов<a class="headerlink" href="#id4" title="Ссылка на этот заголовок">¶</a></h2>
+<h2>Порядок физических интерфейсов<a class="headerlink" href="#id4" title="Permalink to this heading">¶</a></h2>
 <p><em>! Опция доступна только после успешной интроспекции</em></p>
 <p>Перейдите во вкладку <em>Network interfaces order</em>.</p>
 <p><img alt="" src="../../_images/nics-order.png" /></p>
 <p>На экране отобразится список узлов и их интерфейсов. Порядок интерфейсов важен, так как далее сетевые планы строятся только по номерами интерфейсов, а не их именам. Поэтому определите порядок так, чтобы интерфейсы всех узлов с одним порядковым номером были настроены одинаково на физических коммутаторах в вашей серверной.</p>
 </section>
 <section id="id5">
-<h2>Диск операционной системы<a class="headerlink" href="#id5" title="Ссылка на этот заголовок">¶</a></h2>
+<h2>Диск операционной системы<a class="headerlink" href="#id5" title="Permalink to this heading">¶</a></h2>
 <p><em>! Опция доступна только после успешной интроспекции</em></p>
 <p>Перейдите во вкладку <em>Server root disk</em>.</p>
 <p><img alt="" src="../../_images/root-device.png" /></p>
@@ -222,7 +223,7 @@ Asperitas Console не предполагает быстрого старта и
 Иначе система выберет физический диск случайным образом.</p>
 </section>
 <section id="id6">
-<h2>Физические порты<a class="headerlink" href="#id6" title="Ссылка на этот заголовок">¶</a></h2>
+<h2>Физические порты<a class="headerlink" href="#id6" title="Permalink to this heading">¶</a></h2>
 <p>Перейдите во вкладку <em>Baremetal ports</em>.</p>
 <p><img alt="" src="../../_images/baremetal-ports.png" /></p>
 <p>Здесь отображаются все физические порты известные системе для загрузки по PXE.
@@ -231,7 +232,7 @@ Asperitas Console не предполагает быстрого старта и
 <p>Если это произошло, то необходимо оставить один порт в системе и удалить ненужный! Иначе при развёртывании порт для загрузки будет выбран случайным образом из этих двух.</p>
 </section>
 <section id="id7">
-<h2>Сети<a class="headerlink" href="#id7" title="Ссылка на этот заголовок">¶</a></h2>
+<h2>Сети<a class="headerlink" href="#id7" title="Permalink to this heading">¶</a></h2>
 <p>Перейдите во вкладку <em>Networks</em>.</p>
 <p><img alt="" src="../../_images/networks.png" /></p>
 <p>В системе Asperitas используется принцип разделения сетей на роли.
@@ -259,7 +260,7 @@ Asperitas Console не предполагает быстрого старта и
 <p>Сеть создаётся при развёртывании в дальнейшем и удаляется, если удаляется развёртывание.</p>
 </section>
 <section id="id8">
-<h2>Шаблоны развёртывания<a class="headerlink" href="#id8" title="Ссылка на этот заголовок">¶</a></h2>
+<h2>Шаблоны развёртывания<a class="headerlink" href="#id8" title="Permalink to this heading">¶</a></h2>
 <p>Перейдите во вкладку <em>Deployment templates</em>.</p>
 <p><img alt="" src="../../_images/templates.png" /></p>
 <p>При чистом старте - таблица будет пустая. Нажмите кнопку <em>Add</em>, чтобы добавить новое развёртывание.</p>
@@ -290,7 +291,7 @@ Asperitas Console не предполагает быстрого старта и
     </p>
     <p>
         &copy; Copyright 2019-2024, ИСП РАН.<br/>
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.5.0.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 5.0.0.<br/>
     </p>
   </div>
 </footer>
