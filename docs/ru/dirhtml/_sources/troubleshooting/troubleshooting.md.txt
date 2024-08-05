@@ -359,3 +359,40 @@ echo 'StrictHostKeyChecking no' >> /var/lib/config-data/puppet-generated/nova_li
 systemctl restart tripleo_nova_compute
 ~~~
 
+## Виртуальная машина в статусе ERROR
+
+Если виртуальная машина перешла в статус ERROR, то необходимо
+Выяснить на каком узле находится машина 
+~~~shell
+openstack server show -c OS-EXT-SRV-ATTR:host <server_id/name>
+~~~
+Зайти на узел и выяснить ошибку. Варианты могут быть следующие:
+1. Память 
+~~~shell
+free -mh
+~~~
+2. Дисковая память 
+~~~shell
+df -h
+~~~
+3. Статус контейнеров 
+~~~shell
+sudo podman ps | grep nova
+~~~
+4. Логи контейнеров 
+~~~shell
+ls /var/log/containers
+~~~
+После выяснения всех ошибок и исправления их проверьте существование ВМ на 
+этом узле, а именно 
+~~~shell
+ls /var/lib/nova/instances/<server_id>
+~~~
+Затем верните ВМ в работающее состояние 
+~~~shell
+openstack server set --state active <server_id/name>
+openstack server stop <server_id/name>
+openstack server start <server_id/name>
+~~~
+Если машина снова перешла в состояние ERROR, значит ошибка не исправлена - 
+продолжайте исследовать 

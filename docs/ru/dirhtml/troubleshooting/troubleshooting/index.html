@@ -121,6 +121,7 @@
 <li><a class="reference internal" href="#cinder">Бекенд для cinder недоступен</a></li>
 <li><a class="reference internal" href="#nova-cell">Вычислительный узел не добавлен в nova_cell</a></li>
 <li><a class="reference internal" href="#host-key-verification-failed">Ошибка миграции Host key verification failed</a></li>
+<li><a class="reference internal" href="#error">Виртуальная машина в статусе ERROR</a></li>
 </ul>
 </li>
 </ul>
@@ -508,6 +509,52 @@ openstack<span class="w"> </span>volume<span class="w"> </span>service<span clas
 systemctl<span class="w"> </span>restart<span class="w"> </span>tripleo_nova_compute
 </pre></div>
 </div>
+</section>
+<section id="error">
+<h2>Виртуальная машина в статусе ERROR<a class="headerlink" href="#error" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Если виртуальная машина перешла в статус ERROR, то необходимо
+Выяснить на каком узле находится машина</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>openstack<span class="w"> </span>server<span class="w"> </span>show<span class="w"> </span>-c<span class="w"> </span>OS-EXT-SRV-ATTR:host<span class="w"> </span>&lt;server_id/name&gt;
+</pre></div>
+</div>
+<p>Зайти на узел и выяснить ошибку. Варианты могут быть следующие:</p>
+<ol class="arabic simple">
+<li><p>Память</p></li>
+</ol>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>free<span class="w"> </span>-mh
+</pre></div>
+</div>
+<ol class="arabic simple">
+<li><p>Дисковая память</p></li>
+</ol>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>df<span class="w"> </span>-h
+</pre></div>
+</div>
+<ol class="arabic simple">
+<li><p>Статус контейнеров</p></li>
+</ol>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>podman<span class="w"> </span>ps<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>nova
+</pre></div>
+</div>
+<ol class="arabic simple">
+<li><p>Логи контейнеров</p></li>
+</ol>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>ls<span class="w"> </span>/var/log/containers
+</pre></div>
+</div>
+<p>После выяснения всех ошибок и исправления их проверьте существование ВМ на
+этом узле, а именно</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>ls<span class="w"> </span>/var/lib/nova/instances/&lt;server_id&gt;
+</pre></div>
+</div>
+<p>Затем верните ВМ в работающее состояние</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>openstack<span class="w"> </span>server<span class="w"> </span><span class="nb">set</span><span class="w"> </span>--state<span class="w"> </span>active<span class="w"> </span>&lt;server_id/name&gt;
+openstack<span class="w"> </span>server<span class="w"> </span>stop<span class="w"> </span>&lt;server_id/name&gt;
+openstack<span class="w"> </span>server<span class="w"> </span>start<span class="w"> </span>&lt;server_id/name&gt;
+</pre></div>
+</div>
+<p>Если машина снова перешла в состояние ERROR, значит ошибка не исправлена -
+продолжайте исследовать</p>
 </section>
 </section>
 

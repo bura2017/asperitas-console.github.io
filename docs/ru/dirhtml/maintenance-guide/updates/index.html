@@ -168,44 +168,8 @@
 </section>
 <section id="id3">
 <h2>Обновление узлов<a class="headerlink" href="#id3" title="Ссылка на этот заголовок">¶</a></h2>
-<section id="id4">
-<h3>Обновление системы узла развёртывания<a class="headerlink" href="#id4" title="Ссылка на этот заголовок">¶</a></h3>
-<p>При обнаружении уязвимостей или выходе малых обновлений компонентов системы необходимо обновить пакеты,
-а также контейнеры системы, которые отвечают основным компонентам системы.</p>
-<p>В первую очередь необходимо обновить систему</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>dnf<span class="w"> </span>update<span class="w"> </span>
-</pre></div>
-</div>
-<p>Далее обновите список образов контейнеров для установки:</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>cat<span class="w"> </span>container_images<span class="w"> </span><span class="p">|</span><span class="w"> </span>xargs<span class="w"> </span>-I<span class="w"> </span><span class="o">{}</span><span class="w"> </span>sudo<span class="w"> </span>skopeo<span class="w"> </span>copy<span class="w"> </span>--src-tls-verify<span class="o">=</span><span class="nb">false</span><span class="w"> </span><span class="se">\</span>
---dest-tls-verify<span class="o">=</span><span class="nb">false</span><span class="w"> </span>docker://source-images-server/asperitos/<span class="o">{}</span>:latest<span class="w"> </span><span class="se">\</span>
-docker://localhost:13787/asperitos/<span class="o">{}</span>:latest
-</pre></div>
-</div>
-</section>
-<section id="id5">
-<h3>Обновление узлов вычисления<a class="headerlink" href="#id5" title="Ссылка на этот заголовок">¶</a></h3>
-<p>Для начала необходимо сбекапить все данные</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>mkdir<span class="w"> </span>backups-<span class="k">$(</span>date<span class="w"> </span><span class="s2">&quot;+%Y-%m-%d&quot;</span><span class="k">)</span>
-<span class="nb">cd</span><span class="w"> </span>backups-<span class="k">$(</span>date<span class="w"> </span><span class="s2">&quot;+%Y-%m-%d&quot;</span><span class="k">)</span>
-sudo<span class="w"> </span>rsync<span class="w"> </span>-a<span class="w"> </span>/var/lib/openvswitch<span class="w"> </span>./
-sudo<span class="w"> </span>rsync<span class="w"> </span>-a<span class="w"> </span>/var/lib/config-data<span class="w"> </span>./
-sudo<span class="w"> </span>rsync<span class="w"> </span>-a<span class="w"> </span>/var/lib/kolla<span class="w"> </span>./
-sudo<span class="w"> </span>rsync<span class="w"> </span>-a<span class="w"> </span>/var/lib/tripleo-config<span class="w"> </span>./
-</pre></div>
-</div>
-<p>Так как при обновлении все контейнеры пересоздаются - то будет пересоздан и
-контейнер <em>nova_libvirt</em>, отвечающий за создание виртуальных машин.
-При этом все виртуальные машины не должны останавливаться. Проверьте
-наличие пакета systemd-container.</p>
-</section>
-<section id="id6">
-<h3>Обновление узлов управления<a class="headerlink" href="#id6" title="Ссылка на этот заголовок">¶</a></h3>
-<p>Погасите horizon</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>systemctl<span class="w"> </span>stop<span class="w"> </span>tripleo_horizon
-</pre></div>
-</div>
-<p>Для начала необходимо сбекапить все данные</p>
+<p>Для начала необходимо сбекапить все данные. Не все папки есть на всех узлах
+облака</p>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>mkdir<span class="w"> </span>backups-<span class="k">$(</span>date<span class="w"> </span><span class="s2">&quot;+%Y-%m-%d&quot;</span><span class="k">)</span>
 <span class="nb">cd</span><span class="w"> </span>backups-<span class="k">$(</span>date<span class="w"> </span><span class="s2">&quot;+%Y-%m-%d&quot;</span><span class="k">)</span>
 sudo<span class="w"> </span>rsync<span class="w"> </span>-a<span class="w"> </span>/var/lib/mysql<span class="w"> </span>./
@@ -216,7 +180,21 @@ sudo<span class="w"> </span>rsync<span class="w"> </span>-a<span class="w"> </sp
 sudo<span class="w"> </span>rsync<span class="w"> </span>-a<span class="w"> </span>/var/lib/tripleo-config<span class="w"> </span>./
 </pre></div>
 </div>
-<p>Сохраните старые образы контейнеров</p>
+<p>В первую очередь необходимо обновить систему</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>dnf<span class="w"> </span>update<span class="w"> </span>
+</pre></div>
+</div>
+<p>Можно обновить только puppet-пакеты для актуальных данных</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="k">for</span><span class="w"> </span>pac<span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">$(</span>sudo<span class="w"> </span>dnf<span class="w"> </span>list<span class="w"> </span>installed<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>puppet-<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>-v<span class="w"> </span>rubygem-puppet-resource_api.noarch<span class="w"> </span><span class="p">|</span><span class="w"> </span>cut<span class="w"> </span>-d<span class="w"> </span><span class="s2">&quot; &quot;</span><span class="w"> </span>-f1<span class="w"> </span><span class="k">)</span><span class="w"> </span><span class="p">;</span><span class="w"> </span><span class="k">do</span><span class="w"> </span>sudo<span class="w"> </span>dnf<span class="w"> </span>update<span class="w"> </span><span class="nv">$pac</span><span class="w"> </span>--enablerepo<span class="w"> </span>asperitos_devel<span class="w"> </span><span class="p">;</span><span class="w"> </span><span class="k">done</span>
+</pre></div>
+</div>
+<p>Далее обновите список образов контейнеров на андерклауде для установки:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>cat<span class="w"> </span>container_images<span class="w"> </span><span class="p">|</span><span class="w"> </span>xargs<span class="w"> </span>-I<span class="w"> </span><span class="o">{}</span><span class="w"> </span>sudo<span class="w"> </span>skopeo<span class="w"> </span>copy<span class="w"> </span>--src-tls-verify<span class="o">=</span><span class="nb">false</span><span class="w"> </span><span class="se">\</span>
+--dest-tls-verify<span class="o">=</span><span class="nb">false</span><span class="w"> </span>docker://source-images-server/asperitos/<span class="o">{}</span>:latest<span class="w"> </span><span class="se">\</span>
+docker://localhost:13787/asperitos/<span class="o">{}</span>:latest
+</pre></div>
+</div>
+<p>На узлах облака сохраните старые образы контейнеров</p>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="k">for</span><span class="w"> </span>im<span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">$(</span>sudo<span class="w"> </span>podman<span class="w"> </span>image<span class="w"> </span>ls<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>asperitos<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>latest<span class="w"> </span><span class="p">|</span><span class="w"> </span>cut<span class="w"> </span>-d<span class="w"> </span><span class="s2">&quot; &quot;</span><span class="w"> </span><span class="se">\</span>
 -f1<span class="w"> </span><span class="p">|</span><span class="w"> </span>uniq<span class="k">)</span><span class="w"> </span><span class="p">;</span><span class="w"> </span><span class="k">do</span><span class="w"> </span>sudo<span class="w"> </span>podman<span class="w"> </span>tag<span class="w"> </span><span class="nv">$im</span>:latest<span class="w"> </span><span class="nv">$im</span>:<span class="k">$(</span>date<span class="w"> </span><span class="s2">&quot;+%Y-%m-%d&quot;</span><span class="k">)</span><span class="w"> </span><span class="p">;</span><span class="w"> </span><span class="k">done</span>
 </pre></div>
@@ -224,6 +202,24 @@ sudo<span class="w"> </span>rsync<span class="w"> </span>-a<span class="w"> </sp
 <p>Обновите контейнеры с registry узла развёртывания</p>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="k">for</span><span class="w"> </span>im<span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">$(</span>sudo<span class="w"> </span>podman<span class="w"> </span>image<span class="w"> </span>ls<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>asperitos<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>latest<span class="w"> </span><span class="p">|</span><span class="w"> </span>cut<span class="w"> </span>-d<span class="w"> </span><span class="s2">&quot; &quot;</span><span class="w"> </span><span class="se">\</span>
 -f1<span class="w"> </span><span class="p">|</span><span class="w"> </span>uniq<span class="k">)</span><span class="w"> </span><span class="p">;</span><span class="w"> </span><span class="k">do</span><span class="w"> </span>sudo<span class="w"> </span>podman<span class="w"> </span>pull<span class="w"> </span><span class="nv">$im</span>:latest<span class="w"> </span><span class="p">;</span><span class="w"> </span><span class="k">done</span>
+</pre></div>
+</div>
+<section id="id4">
+<h3>Обновление системы узла развёртывания<a class="headerlink" href="#id4" title="Ссылка на этот заголовок">¶</a></h3>
+<p>При обнаружении уязвимостей или выходе малых обновлений компонентов системы необходимо обновить пакеты,
+а также контейнеры системы, которые отвечают основным компонентам системы.</p>
+</section>
+<section id="id5">
+<h3>Обновление узлов вычисления<a class="headerlink" href="#id5" title="Ссылка на этот заголовок">¶</a></h3>
+<p>Так как при обновлении все контейнеры пересоздаются - то будет пересоздан и
+контейнер <em>nova_libvirt</em>, отвечающий за создание виртуальных машин.
+При этом все виртуальные машины не должны останавливаться. Проверьте
+наличие пакета systemd-container.</p>
+</section>
+<section id="id6">
+<h3>Обновление узлов управления<a class="headerlink" href="#id6" title="Ссылка на этот заголовок">¶</a></h3>
+<p>Погасите horizon</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>systemctl<span class="w"> </span>stop<span class="w"> </span>tripleo_horizon
 </pre></div>
 </div>
 </section>
