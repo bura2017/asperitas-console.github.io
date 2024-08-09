@@ -112,7 +112,13 @@ IP-адреса можно зафиксировать для развёртыв�
 Все опции, кроме Bonding, имеют смысл только при развёртывании типа _OpenStack_! 
 Если вы на этапе развёртывания типа _Ceph_, прочтите ниже описание _Bonding_ и используйте его в случае необходимости. Остальные галочки оставьте пустыми. 
 
-* _CephAnsibleExternal_ - обязателен при использовании Ceph, необходимо настроить все параметры внутри и [подготовить](https://access.redhat.com/documentation/en-us/red_hat_openstack_platform/16.2/html/integrating_an_overcloud_with_an_existing_red_hat_ceph_storage_cluster/assembly-preparing-overcloud-nodes_existing-ceph#proc-configuring-the-existing-ceph-storage-cluster_preparing-overcloud-nodes) Ceph;
+* _CephAnsibleExternal_ - обязателен при использовании Ceph, необходимо 
+  настроить все параметры внутри и 
+  [подготовить](https://access.redhat.com/documentation/en-us/red_hat_openstack_platform/16.2/html/integrating_an_overcloud_with_an_existing_red_hat_ceph_storage_cluster/assembly-preparing-overcloud-nodes_existing-ceph#proc-configuring-the-existing-ceph-storage-cluster_preparing-overcloud-nodes) Ceph;
+  
+  `CephExternalMonHost` заполняется в формате списка IP-адресов через запятую.
+  
+  Например, `10.10.10.1:3300,10.10.10.2:3300,10.10.10.3:3300,10.10.10.4:3300`
 * _SwiftExternal_ - использовать Ceph Rgw как бекенд для сервиса [Swift](https://access.redhat.com/documentation/en-us/red_hat_openstack_platform/16.2/html/storage_guide/assembly_configuring-the-object-storage-service_osp-storage-guide)
 * _CinderCephBackend_ - использовать Ceph как бекенд для сервиса [Cinder](https://access.redhat.com/documentation/en-us/red_hat_openstack_platform/16.2/html/storage_guide/assembly-configuring-the-block-storage-service_osp-storage-guide)
 * _CinderIscsiBackend_ - использовать Iscsi как бекенд для сервиса [Cinder](https://access.redhat.com/documentation/en-us/red_hat_openstack_platform/16.2/html/storage_guide/assembly-configuring-the-block-storage-service_osp-storage-guide)
