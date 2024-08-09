@@ -396,3 +396,19 @@ openstack server start <server_id/name>
 ~~~
 Если машина снова перешла в состояние ERROR, значит ошибка не исправлена - 
 продолжайте исследовать 
+
+## Libvirt ошибка секрета
+
+При создании виртуальной машине в логах узла виртуализации 
+/var/log/containers/libvirt/ видна ошибка 
+~~~
+Secret not found: no secret with matching uuid
+~~~
+
+Выполните на узле 
+~~~shell
+sudo podman exec -ti -u root nova_libvirt virsh secret-list
+sudo podman exec -ti -u root nova_libvirt virsh secret-undefine <secret_uuid>
+sudo podman exec -ti -u root nova_libvirt virsh secret-define /etc/nova/secret.xml
+sudo podman exec -ti -u root nova_libvirt virsh secret-set-value 
+~~~
