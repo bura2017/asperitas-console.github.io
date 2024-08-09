@@ -412,3 +412,6 @@ sudo podman exec -ti -u root nova_libvirt virsh secret-undefine <secret_uuid>
 sudo podman exec -ti -u root nova_libvirt virsh secret-define /etc/nova/secret.xml
 sudo podman exec -ti -u root nova_libvirt virsh secret-set-value 
 ~~~
+
+Причина ошибки - смена fsid для ceph'а, необходимо удалить старый fsid и 
+добавить новый указанными выше командами 
