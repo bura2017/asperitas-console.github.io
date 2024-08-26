@@ -358,7 +358,7 @@ screen<span class="w"> </span>-x<span class="w"> </span>&lt;deploy_name&gt;
 </div>
 <p>В примере выше ошибка произошла на узле <em>asperitas-controller-0</em>.
 Для поиска причины ошибки необходимо <a class="reference external" href="https://docs.openstack.org/tripleo-quickstart/latest/accessing-overcloud.html#logging-in-to-overcloud-hosts">зайти по ssh</a> на этот узел и запустить puppet самостоятельно</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>puppet<span class="w"> </span>apply<span class="w"> </span>--modulepath<span class="o">=</span>/etc/puppet/modules:/opt/stack/puppet-modules:/usr/share/openstack-puppet/modules<span class="w"> </span>--detailed-exitcodes<span class="w"> </span>--summarize<span class="w"> </span>--color<span class="o">=</span><span class="nb">true</span><span class="w"> </span>--verbose<span class="w"> </span>/var/lib/tripleo-config/puppet_step_config.pp<span class="w"> </span>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>puppet<span class="w"> </span>apply<span class="w"> </span>--modulepath<span class="o">=</span>/etc/puppet/modules:/opt/stack/puppet-modules:/usr/share/openstack-puppet/modules<span class="w"> </span>--detailed-exitcodes<span class="w"> </span>--summarize<span class="w"> </span>--color<span class="o">=</span><span class="nb">true</span><span class="w"> </span>--verbose<span class="w"> </span>--debug<span class="w"> </span>/var/lib/tripleo-config/puppet_step_config.pp<span class="w"> </span>
 </pre></div>
 </div>
 <p>Дальнейший поиск проблемы зависит от вывода команды.<br />
