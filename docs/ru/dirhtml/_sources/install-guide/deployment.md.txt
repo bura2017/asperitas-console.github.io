@@ -61,6 +61,59 @@ asperitas
 
 Удалять уже развёрнутые сети таким образом нельзя!
 
+## Обновление контейнеров
+
+Все образы контейнеров хранятся в репозитории на узле развёртывания. Адрес 
+репозитория `<hostname>.ctlplane:13787`, далее используется 
+`undercloud.ctlplane:13787`. 
+
+Для обновления образов контейнеров используйте команду 
+[skopeo](https://www.mankier.com/1/skopeo). Например, с узла развёртывания 
+выполните команду:
+
+```shell
+skopeo copy docker://obs:82/asperitos/openstack-nova-compute:latest \ 
+  docker://undercloud.ctlplane:13787/asperitos/openstack-nova-compute:latest
+```
+
+Этой командой обновляются образы контейнеров в реестре на узле 
+развёртывания. Для того чтобы загрузить обновлённые образы на узлы облака, 
+необходимо зайти на узел облака и выполнить команду:
+
+```shell
+sudo podman pull undercloud.ctlplane:13787/asperitos/openstack-nova-compute:latest
+```
+
+Для пересоздания контейнеров на узлах необходимо выполнить _Run Cloud Service 
+Deployment_. Эта операция пересоздаст все контейнеры на узлах. 
+Также будут пересозданы все конфигурации из папки 
+/var/lib/config-data/puppet-generated, где хранятся конфигурации 
+сервисов OpenStack. Данные сервисов OpenStack не будут потеряны, так как 
+все данные, как правило, хранятся во внешних по отношению к контейнерам 
+вольюмах на хосте контейнера.  
+
+**Внимательно!** Операция _Run Cloud Service Deployment_ не затронет работу 
+Pacemaker и Ceph. 
+
+Для того чтобы обновить контейнеры управляемые Pacemaker, необходимо с 
+одного из узлов управления выполнить команду:
+
+```shell
+sudo podman tag undercloud.ctlplane:13787/asperitos/<image_name>:latest \ 
+undercloud.ctlplane:13787/asperitos/<image_name>:pcmklatest
+sudo pcs status
+sudo pcs resource restart <service_resource>
+```
+
+Например
+
+```shell
+sudo podman tag undercloud.ctlplane:13787/asperitos/openstack-haproxy:latest \ 
+undercloud.ctlplane:13787/asperitos/openstack-haproxy:pcmklatest
+sudo pcs status
+sudo pcs resource restart haproxy-bundle-podman-0
+```
+
 ## Добавление узлов в облако
 
 Для добавления новых узлов необходимо пройти пункты из _Подготовка развёртывания с нуля_, касающиеся физических машин:

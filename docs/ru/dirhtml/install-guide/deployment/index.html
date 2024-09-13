@@ -96,10 +96,11 @@
 <li><a class="reference internal" href="#">Развёртывание облака</a><ul>
 <li><a class="reference internal" href="#id2">Нулевое развёртывание</a></li>
 <li><a class="reference internal" href="#id3">Обновление параметров развёртывания</a></li>
-<li><a class="reference internal" href="#id4">Добавление узлов в облако</a></li>
-<li><a class="reference internal" href="#id5">Удаление развёрнутых узлов из облака</a></li>
-<li><a class="reference internal" href="#id6">Замена развёрнутых узлов в облаке</a></li>
-<li><a class="reference internal" href="#id7">Частичное развёртывание</a></li>
+<li><a class="reference internal" href="#id4">Обновление контейнеров</a></li>
+<li><a class="reference internal" href="#id5">Добавление узлов в облако</a></li>
+<li><a class="reference internal" href="#id6">Удаление развёрнутых узлов из облака</a></li>
+<li><a class="reference internal" href="#id7">Замена развёрнутых узлов в облаке</a></li>
+<li><a class="reference internal" href="#id8">Частичное развёртывание</a></li>
 </ul>
 </li>
 </ul>
@@ -204,7 +205,50 @@
 <p>Удалять уже развёрнутые сети таким образом нельзя!</p>
 </section>
 <section id="id4">
-<h2>Добавление узлов в облако<a class="headerlink" href="#id4" title="Ссылка на этот заголовок">¶</a></h2>
+<h2>Обновление контейнеров<a class="headerlink" href="#id4" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Все образы контейнеров хранятся в репозитории на узле развёртывания. Адрес
+репозитория <code class="docutils literal notranslate"><span class="pre">&lt;hostname&gt;.ctlplane:13787</span></code>, далее используется
+<code class="docutils literal notranslate"><span class="pre">undercloud.ctlplane:13787</span></code>.</p>
+<p>Для обновления образов контейнеров используйте команду
+<a class="reference external" href="https://www.mankier.com/1/skopeo">skopeo</a>. Например, с узла развёртывания
+выполните команду:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>skopeo<span class="w"> </span>copy<span class="w"> </span>docker://obs:82/asperitos/openstack-nova-compute:latest<span class="w"> </span><span class="se">\ </span>
+<span class="w">  </span>docker://undercloud.ctlplane:13787/asperitos/openstack-nova-compute:latest
+</pre></div>
+</div>
+<p>Этой командой обновляются образы контейнеров в реестре на узле
+развёртывания. Для того чтобы загрузить обновлённые образы на узлы облака,
+необходимо зайти на узел облака и выполнить команду:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>podman<span class="w"> </span>pull<span class="w"> </span>undercloud.ctlplane:13787/asperitos/openstack-nova-compute:latest
+</pre></div>
+</div>
+<p>Для пересоздания контейнеров на узлах необходимо выполнить <em>Run Cloud Service
+Deployment</em>. Эта операция пересоздаст все контейнеры на узлах.
+Также будут пересозданы все конфигурации из папки
+/var/lib/config-data/puppet-generated, где хранятся конфигурации
+сервисов OpenStack. Данные сервисов OpenStack не будут потеряны, так как
+все данные, как правило, хранятся во внешних по отношению к контейнерам
+вольюмах на хосте контейнера.</p>
+<p><strong>Внимательно!</strong> Операция <em>Run Cloud Service Deployment</em> не затронет работу
+Pacemaker и Ceph.</p>
+<p>Для того чтобы обновить контейнеры управляемые Pacemaker, необходимо с
+одного из узлов управления выполнить команду:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>podman<span class="w"> </span>tag<span class="w"> </span>undercloud.ctlplane:13787/asperitos/&lt;image_name&gt;:latest<span class="w"> </span><span class="se">\ </span>
+undercloud.ctlplane:13787/asperitos/&lt;image_name&gt;:pcmklatest
+sudo<span class="w"> </span>pcs<span class="w"> </span>status
+sudo<span class="w"> </span>pcs<span class="w"> </span>resource<span class="w"> </span>restart<span class="w"> </span>&lt;service_resource&gt;
+</pre></div>
+</div>
+<p>Например</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>podman<span class="w"> </span>tag<span class="w"> </span>undercloud.ctlplane:13787/asperitos/openstack-haproxy:latest<span class="w"> </span><span class="se">\ </span>
+undercloud.ctlplane:13787/asperitos/openstack-haproxy:pcmklatest
+sudo<span class="w"> </span>pcs<span class="w"> </span>status
+sudo<span class="w"> </span>pcs<span class="w"> </span>resource<span class="w"> </span>restart<span class="w"> </span>haproxy-bundle-podman-0
+</pre></div>
+</div>
+</section>
+<section id="id5">
+<h2>Добавление узлов в облако<a class="headerlink" href="#id5" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Для добавления новых узлов необходимо пройти пункты из <em>Подготовка развёртывания с нуля</em>, касающиеся физических машин:</p>
 <ul class="simple">
 <li><p>Физические узлы</p></li>
@@ -219,24 +263,24 @@
 <p>Далее выберите <em>Run Cloud Service Deployment</em> и поставьте галочки в дополнительных параметрах снизу в полях: <em>undercloud</em>, <em><stack-name>-controller-0</em> и новые добавленные сервера. Затем нажмите <em>Start</em>.
 Таким образом добавление узла будет происходить быстрее.</p>
 </section>
-<section id="id5">
-<h2>Удаление развёрнутых узлов из облака<a class="headerlink" href="#id5" title="Ссылка на этот заголовок">¶</a></h2>
+<section id="id6">
+<h2>Удаление развёрнутых узлов из облака<a class="headerlink" href="#id6" title="Ссылка на этот заголовок">¶</a></h2>
 <p>При уменьшении количества узлов облака имеются ограничения: удалить можно только узлы с наибольшим индексом.
 Индекс узла соответствует суффиксу имени узла.
 Например: <em>asperitas-controller**-0**</em>, или <em>asperitas-novacomputeiha**-7**</em>, индекс выделен.</p>
 <p>Для этого досточно в разделе <em>Role Services and Networks</em> уменьшить количество узлов до необходимого.
 Затем в разделе <em>Deployment</em> запустить действие <em>Create/Update Plan Deployment (Install OS)</em> и <em>Update Known Hosts</em>.</p>
 </section>
-<section id="id6">
-<h2>Замена развёрнутых узлов в облаке<a class="headerlink" href="#id6" title="Ссылка на этот заголовок">¶</a></h2>
+<section id="id7">
+<h2>Замена развёрнутых узлов в облаке<a class="headerlink" href="#id7" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Для замены узла необходимо сначала добавить новый физический узел и настроить его согласно инструкции из <em>Добавление узлов в облако</em>.</p>
 <p>Затем зайдите в окно <em>Servers list</em> в <em>Меню развёртывания</em> и выберете сервер для удаления.</p>
 <p>Важно! Удалить сервер именно из списка в <em>Меню развёртывания</em>, а <strong>не</strong> в <em>Главном меню</em>.</p>
 <p>Затем освободившийся физический узел можно удалить из списка <em>Baremetal nodes</em> в <em>Главном меню</em>.</p>
 <p>Дальнейшие действия соответствуют пункту <em>Добавление узлов в облако</em>.</p>
 </section>
-<section id="id7">
-<h2>Частичное развёртывание<a class="headerlink" href="#id7" title="Ссылка на этот заголовок">¶</a></h2>
+<section id="id8">
+<h2>Частичное развёртывание<a class="headerlink" href="#id8" title="Ссылка на этот заголовок">¶</a></h2>
 <p>На стадии <strong>Run Cloud Service Deployment</strong> обновляется окно выбора c опциями <em>Limit to</em>:</p>
 <p><img alt="" src="../../_images/update-host-choice.png" /></p>
 </section>
